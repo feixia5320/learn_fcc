@@ -142,3 +142,21 @@ function repeat(str, num) {
 }
 
 repeat("abc", 3);
+//----------------截断一个字符串---------------
+
+function truncate(str, num) {
+  var tmp = '';
+  if (num <= 3) {
+    tmp = str.substr(0,num);
+    tmp +='...';
+    return tmp;
+  }else if(str.length <= num){
+    return str;
+  }
+  tmp = str.substr(0,num - 3);
+  tmp +='...';
+  return tmp;
+
+}
+
+truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);
