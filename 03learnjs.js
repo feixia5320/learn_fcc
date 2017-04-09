@@ -228,3 +228,26 @@ function getNull(val,index,arr){
 }
 
 bouncer([7, "ate", "", false, 9]);
+
+//---------------删除第一个数组中的指定元素------------
+function destroyer(arr) {
+  var len = 0;
+  len = arguments.length;
+  var arr_tmp= arr;
+  for (var i = 0; i < len -1; i++) {
+    a = arguments[i+1];
+    arr_tmp = arr_tmp.filter(del);
+    count++;
+  }
+  return arr_tmp;
+}
+var count =0;
+function del(val,index,arr){
+  if (val == a) {
+    return false;
+  }else{
+    return true;
+  }
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
