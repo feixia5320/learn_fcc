@@ -216,3 +216,15 @@ function mutation(arr) {
 
 mutation(["hello", "hey"]);
 
+//---------------删除数组中的所有假值------------
+function bouncer(arr) {
+  var arr_tmp = [];
+  arr_tmp = arr.filter(getNull);
+  return arr_tmp;
+}
+
+function getNull(val,index,arr){
+  return Boolean(val);
+}
+
+bouncer([7, "ate", "", false, 9]);
