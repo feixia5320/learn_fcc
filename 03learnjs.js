@@ -129,4 +129,16 @@ function confirmEnding(str, target) {
 
 confirmEnding("Bastian", "n");
 
+//----------------重复一个指定的字符串 num次--------------
+function repeat(str, num) {
+  if (num<0) {
+    return '';
+  }
+  var tmp=str;
+  for (var i = 0; i < num - 1; i++) {
+    tmp +=str;
+  }
+  return tmp;
+}
 
+repeat("abc", 3);
