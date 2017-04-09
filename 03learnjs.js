@@ -251,3 +251,20 @@ function del(val,index,arr){
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+//---------数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引
+function where(arr, num) {
+  arr.push(num);
+  arr.sort(setsort);
+  a = num;
+  var b = arr.findIndex(getInd);
+
+  return b;
+}
+function setsort(a,b){
+  return a-b;
+}
+function getInd(val,index,arr){
+  return val >= a;
+}
+
+where([5, 3, 20, 3], 5);
