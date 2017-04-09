@@ -160,3 +160,21 @@ function truncate(str, num) {
 }
 
 truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);
+//-------------数组arr按照指定的数组大小size分割成若干个数组块-------
+function chunk(arr, size) {
+  var a =0,b = 0;
+  b = size;
+  var arr_tmp = [];
+  var len = arr.length/size;
+for (var i = 0; i < len; i++) {
+  var tmp = [];
+  tmp = arr.slice(a,b);
+  arr_tmp.push(tmp);
+  a += size;
+  b += size;
+  }
+    
+  return arr_tmp;
+}
+
+chunk([0, 1, 2, 3, 4, 5], 3);
