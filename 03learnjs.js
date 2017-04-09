@@ -92,3 +92,25 @@ function setUPCase(val,index,arr){
 }
 
 titleCase("sHoRt AnD sToUt");
+
+//-------------找到每个小数组中的最大值------------
+function largestOfFour(arr) {
+  var n = arr.length;
+  var arr_new = [];
+  for(var i=0; i<n; i++){
+    arr[i].forEach(getMax);
+    arr_new[i] = max;
+    max = 0;
+  }
+  return arr_new;
+}
+
+var max = 0;
+function getMax(val,index,arr) {
+    if(val > max){
+      max = val;
+    }
+    return max;
+}
+
+largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
