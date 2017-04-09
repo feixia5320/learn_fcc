@@ -70,3 +70,25 @@ function getMax(val,index,arr) {
 }
 
 findLongestWord("The quick brown fox jumped over the lazy dog");
+
+//--------------单词首字母都大写-------------
+
+function titleCase(str) {
+  var arr = [];
+  var str2 = str.toLowerCase();
+  arr = str2.split(' ');
+  arr.forEach(setUPCase);
+
+  var str3 = arr_new.join(' ');
+  return str3;
+}
+
+var arr_new =[];
+
+function setUPCase(val,index,arr){
+  var tmp = val.charAt(0).toUpperCase();
+  tmp +=val.substr(1);
+  arr_new[index] = tmp;
+}
+
+titleCase("sHoRt AnD sToUt");
