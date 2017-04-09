@@ -188,3 +188,31 @@ function slasher(arr, howMany) {
 }
 
 slasher([1, 2, 3], 2);
+
+//-------------第一个字符串元素包含了第二个字符串元素的所有字符--------
+function mutation(arr) {
+  var str = '';
+  var str2 = '';
+  str = arr[0];
+  str = str.toLowerCase();
+  str2 = arr[1];
+  str2 = str2.toLowerCase();
+
+  var n =0;
+  var count = 0;
+  var str2_len = str2.length;
+  for (var i = 0; i < str2_len; i++) {
+    n = str.indexOf(str2.charAt(i));
+    if ( n == -1 ) {
+      return false;
+    }else{
+      count++;
+  }
+  if (count == str2_len) {
+    return true;
+  }
+  }
+}
+
+mutation(["hello", "hey"]);
+
