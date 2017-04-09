@@ -114,3 +114,19 @@ function getMax(val,index,arr) {
 }
 
 largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+//------------------------指定的字符串(target)结尾------------
+function confirmEnding(str, target) {
+  var target_len = target.length;
+  var str_len = str.length;
+  var tmp = '';
+  tmp = str.substr(str_len - target_len);
+  if (tmp == target) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+confirmEnding("Bastian", "n");
+
+
