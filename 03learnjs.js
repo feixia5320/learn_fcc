@@ -268,3 +268,37 @@ function getInd(val,index,arr){
 }
 
 where([5, 3, 20, 3], 5);
+//-----------移位密码也就是密码中的字母会按照指定的数量来做移位----
+
+function rot13(str) {
+  var a_charcode = 'A'.charCodeAt(0);
+  var n_charcode = 'N'.charCodeAt(0);
+  var z_charcode = 'Z'.charCodeAt(0);
+  var new_chr = '';
+  var str2 = '';
+  var arr = [];
+  arr = str.split('');
+
+  for (var i = 0; i < str.length; i++) {
+    if (a_charcode <= str.charCodeAt(i) && str.charCodeAt(i) < n_charcode) {
+      new_chr = replace_code(str.charAt(i),13);
+      str2 +=  new_chr;
+    }else if(str.charCodeAt(i) >= n_charcode && str.charCodeAt(i) <=z_charcode){
+      new_chr = replace_code(str.charAt(i),-13);
+      str2 +=  new_chr;
+    }else{
+      str2 +=  str.charAt(i);
+    }
+  }
+  
+  return str2;
+}
+
+function replace_code(a,b){
+  var n = a.charCodeAt(0);
+  return String.fromCharCode(n + b);
+}
+
+rot13("SERR PBQR PNZC");
+
+
