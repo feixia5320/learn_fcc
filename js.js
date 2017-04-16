@@ -15,7 +15,7 @@ $(function () {
 
         var chart = Highcharts.chart('fun1',json_2);
 
-        // the button handler
+        //增加数据
         $('#btn2').click(function () {
             if (chart.series.length === 1) {
                 chart.addSeries({
@@ -23,11 +23,32 @@ $(function () {
                 });
             }
         });
+        //改变标题
+        $('#btn4').click(function () {
+            chart.yAxis[0].setTitle({
+                text: '新 Y 轴标题',
+                x: -20,
+                rotation: 90
+            });
+        });
+        //导出图
+         $('#btn5').click(function () {
+        chart.exportChart(null, {
+            chart: {
+                backgroundColor: '#FFFFFF'
+            }
+        });
+    });
     }
     adddata();
 
+    //test
     $('#btn3').click(function(){
             alert('sdf');
-        });
+    });
+
+   
+    //-------------改变标题-------------
+
     
 });
