@@ -302,3 +302,20 @@ function replace_code(a,b){
 rot13("SERR PBQR PNZC");
 
 
+//---------返回这两个数字和它们之间所有数字的和---------
+function sumAll(arr) {
+  arr.sort(function(a,b){return a-b});
+  var n = arr[1] - arr[0];
+  var total = arr[0];
+  var count = 1;
+  for (var i = 0; i < n; i++) {
+    total +=arr[0] + count;
+    count++;
+
+  }
+  return total;
+
+
+}
+
+sumAll([5, 10]);
