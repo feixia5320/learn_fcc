@@ -524,3 +524,28 @@ function pat(a) {
 
 pair("GCG");
 
+
+// -----------字母序列中找到缺失的字母并返回它-------------
+function fearNotLetter(str) {
+    var str1 = '';
+    var a = 0;
+    var b = 0;
+    var len = 0;
+    len = str.length;
+    a = str.charCodeAt(0);
+    b = str.charCodeAt(len - 1);
+    if (b - a == len - 1) {
+        return undefined;
+    } else {
+        for (var i = 0; i < len; i++) {
+            if (str.charCodeAt(i) == a) {
+                a++;
+            } else {
+                return String.fromCharCode(a);
+            }
+        }
+    }
+}
+
+fearNotLetter('acde');
+
