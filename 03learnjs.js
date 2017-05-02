@@ -319,3 +319,208 @@ function sumAll(arr) {
 }
 
 sumAll([5, 10]);
+
+
+//-----------最大公约数-----------
+function big(){
+	
+	var u=42;
+	var v=23;
+	var temp=v;
+	while (v!=0)
+	{
+		temp =u%v;
+		u=v;
+		v=temp;
+	}
+	alert("最大公约数是"+u);
+}
+big()
+
+//-------------数字反转---------------
+function reversenum(){
+	
+
+var num = 23871;
+var reverse = 0;
+do{
+	var lastdigit = num % 10;
+	reverse = (reverse*10) + lastdigit;
+	num =num / 10;
+	
+}while(num >0 );
+
+return reverse;
+}
+
+reversenum();
+
+//--------------找两个数组中独有的对象----------
+function diff(arr1, arr2) {
+	var tmp = [];
+	tmp =tmp.concat(compar(arr1,arr2));
+	tmp = tmp.concat(compar(arr2,arr1));
+	return tmp;
+}
+
+function compar(arr1, arr2) {
+	var newarr = [];
+	arr1.forEach(function(item, index, arr) {
+		var cont = 0;
+		var len = arr2.length;
+		for(var i = 0; i < len; i++) {
+			if(item != arr2[i]) {
+				cont++;
+			} else {
+				break;
+			}
+		}
+		if(cont == len) {
+
+			newarr.push(item);
+		}
+	});
+
+	// Same, same; but different.
+	return newarr;
+}
+
+diff([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+
+//---------------------遍历对象，查找目标对象--------------
+function where(collection, source) {
+    var arr1 = [];
+    var arr2 = [];
+    var keys = [];
+    keys = Object.keys(source);
+    arr1 = abc(collection, source, 0);
+    if (keys.length == 2) {
+        arr2 = abc(arr1, source, 1);
+        return arr2;
+    } else {
+        return arr1;
+    }
+
+}
+
+function abc(collection, source, j) {
+    var arrtmp = [];
+    var keys = [];
+    var n = 0;
+    keys = Object.keys(source);
+    n = collection.length;
+    for (var i = 0; i < n; i++) {
+        var element = collection[i];
+        if (element.hasOwnProperty(keys[j])) {
+            if (element[keys[j]] == source[keys[j]]) {
+                arrtmp.push(element);
+            }
+        } else {
+            continue;
+        }
+    }
+
+    return arrtmp;
+}
+
+where([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 });
+
+//--------------------替换句子中的给定字符串---------------
+function myReplace(str, before, after) {
+    var strtmp = "";
+    if (before.charCodeAt(0) < "a".charCodeAt(0)) {
+        strtmp = after.charAt(0).toUpperCase();
+        var tmp = after.substr(1);
+        strtmp += tmp;
+
+        after = strtmp;
+    }
+    var tmp2 = str.replace(before, after);
+
+    return tmp2;
+}
+myReplace("He is Sleeping on the couch", "Sleeping", "sitting")
+myReplace("Let us go to the store", "store", "mall")
+
+//---------------一个英文单词的第一个辅音或辅音丛移到词尾-------------------
+function translate(str) {
+    var str1 = "";
+    var arr1 = [];
+    var n = 0;
+    var tmp = "";
+    if (yuanyin(str[0])) {
+        str = str + "way";
+        return str;
+    } else {
+        for (var i = 0; i < str.length; i++) {
+            str1 = str[i];
+            if (!yuanyin(str1)) {
+                arr1.push(str1);
+            } else {
+                break;
+            }
+        }
+        n = arr1.length;
+        tmp = arr1.join("");
+        str = str.substr(n);
+        str += tmp;
+        str += "ay";
+        return str;
+    }
+
+
+
+    return str;
+}
+
+function yuanyin(a) {
+    var arr = ["a", "e", "i", "o", "u"];
+    for (var i = 0; i < 5; i++) {
+        if (a == arr[i]) {
+            return true;
+        } else {
+            continue;
+        }
+
+    }
+    return false;
+}
+
+
+translate("consonant");
+
+//------------------字符转换，生物中碱基对转换--------------
+function pair(str) {
+    var arr1 = [];
+    var tmp = [];
+    var str2 = "";
+
+
+
+    arr1 = str.split("");
+    for (var i = 0; i < arr1.length; i++) {
+        var arr2 = [];
+        str2 = arr1[i];
+        arr2.push(str2);
+        arr2.push(pat(str2));
+        tmp.push(arr2);
+    }
+
+
+    return tmp;
+}
+
+function pat(a) {
+    var pair = {
+        A: "T",
+        T: "A",
+        C: "G",
+        G: "C"
+    };
+    var str = "";
+    str = pair[a];
+    return str;
+}
+
+pair("GCG");
+
