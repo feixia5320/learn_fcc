@@ -1,15 +1,14 @@
-//--------------------字符串逆序----------------
+// --------------------字符串逆序----------------
 function reverseString(str) {
-
     var arr = str.split('');
     arr.reverse();
     var tmp = arr.join('');
     return tmp;
 }
 
-reverseString("hello");
+reverseString('hello');
 
-//-----------------一个整数的阶乘----------------
+// -----------------一个整数的阶乘----------------
 function factorialize(num) {
     var total = 1;
     while (num > 1) {
@@ -21,11 +20,11 @@ function factorialize(num) {
 
 factorialize(5);
 
-//------------------字符串是回文----------------
+// ------------------字符串是回文----------------
 function palindrome(str) {
     var tmp = [];
     var t_str;
-    t_str = str.replace(/\,|\s|\.|\-|\_/gi, '');
+    t_str = str.replace(/\,  | \s | \. | \ - | \_/gi, '');
     t_str = t_str.replace(/\(/g, ')');
     t_str = t_str.toLowerCase();
     var t_str2 = reverseString(t_str);
@@ -34,7 +33,6 @@ function palindrome(str) {
     } else {
         return false;
     }
-
 }
 
 function reverseString(str) {
@@ -44,9 +42,9 @@ function reverseString(str) {
     return tmp;
 }
 
-palindrome("0_0 (: /-\ :) 0-0");
+palindrome('0_0 (: /-\ :) 0-0');
 
-//----------------句子中最长的单词----------------
+// ----------------句子中最长的单词----------------
 function findLongestWord(str) {
     var arr = [];
     arr = str.split(' ');
@@ -70,9 +68,9 @@ function findLongestWord(str) {
     return max;
 }
 
-findLongestWord("The quick brown fox jumped over the lazy dog");
+findLongestWord('The quick brown fox jumped over the lazy dog');
 
-//--------------单词首字母都大写-------------
+// --------------单词首字母都大写-------------
 
 function titleCase(str) {
     var arr = [];
@@ -92,9 +90,9 @@ function setUPCase(val, index, arr) {
     arr_new[index] = tmp;
 }
 
-titleCase("sHoRt AnD sToUt");
+titleCase('sHoRt AnD sToUt');
 
-//-------------找到每个小数组中的最大值------------
+// -------------找到每个小数组中的最大值------------
 function largestOfFour(arr) {
     var n = arr.length;
     var arr_new = [];
@@ -121,7 +119,7 @@ largestOfFour([
     [32, 35, 37, 39],
     [1000, 1001, 857, 1]
 ]);
-//------------------------指定的字符串(target)结尾------------
+// ------------------------指定的字符串(target)结尾------------
 function confirmEnding(str, target) {
     var target_len = target.length;
     var str_len = str.length;
@@ -134,9 +132,9 @@ function confirmEnding(str, target) {
     }
 }
 
-confirmEnding("Bastian", "n");
+confirmEnding('Bastian', 'n');
 
-//----------------重复一个指定的字符串 num次--------------
+// ----------------重复一个指定的字符串 num次--------------
 function repeat(str, num) {
     if (num < 0) {
         return '';
@@ -148,8 +146,8 @@ function repeat(str, num) {
     return tmp;
 }
 
-repeat("abc", 3);
-//----------------截断一个字符串---------------
+repeat('abc', 3);
+// ----------------截断一个字符串---------------
 
 function truncate(str, num) {
     var tmp = '';
@@ -163,12 +161,11 @@ function truncate(str, num) {
     tmp = str.substr(0, num - 3);
     tmp += '...';
     return tmp;
-
 }
 
-truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length);
+truncate('A-tisket a-tasket A green and yellow basket', 'A-tisket a-tasket A green and yellow basket'.length);
 
-//-------------数组arr按照指定的数组大小size分割成若干个数组块-------
+// -------------数组arr按照指定的数组大小size分割成若干个数组块-------
 function chunk(arr, size) {
     var a = 0,
         b = 0;
@@ -188,7 +185,7 @@ function chunk(arr, size) {
 
 chunk([0, 1, 2, 3, 4, 5], 3);
 
-//-------------一个数组被截断n个元素后还剩余的元素-----------------
+// -------------一个数组被截断n个元素后还剩余的元素-----------------
 function slasher(arr, howMany) {
     var arr_tmp = [];
     arr.splice(0, howMany);
@@ -197,7 +194,7 @@ function slasher(arr, howMany) {
 
 slasher([1, 2, 3], 2);
 
-//-------------第一个字符串元素包含了第二个字符串元素的所有字符--------
+// -------------第一个字符串元素包含了第二个字符串元素的所有字符--------
 function mutation(arr) {
     var str = '';
     var str2 = '';
@@ -222,9 +219,9 @@ function mutation(arr) {
     }
 }
 
-mutation(["hello", "hey"]);
+mutation(['hello', 'hey']);
 
-//---------------删除数组中的所有假值------------
+// ---------------删除数组中的所有假值------------
 function bouncer(arr) {
     var arr_tmp = [];
     arr_tmp = arr.filter(getNull);
@@ -235,9 +232,9 @@ function getNull(val, index, arr) {
     return Boolean(val);
 }
 
-bouncer([7, "ate", "", false, 9]);
+bouncer([7, 'ate', '', false, 9]);
 
-//---------------删除第一个数组中的指定元素------------
+// ---------------删除第一个数组中的指定元素------------
 function destroyer(arr) {
     var len = 0;
     len = arguments.length;
@@ -260,7 +257,7 @@ function del(val, index, arr) {
 }
 
 destroyer([1, 2, 3, 1, 2, 3], 2, 3);
-//---------数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引
+// ---------数组排序，然后找到指定的值在数组的位置，最后返回位置对应的索引
 function where(arr, num) {
     arr.push(num);
     arr.sort(setsort);
@@ -279,7 +276,7 @@ function getInd(val, index, arr) {
 }
 
 where([5, 3, 20, 3], 5);
-//-----------移位密码也就是密码中的字母会按照指定的数量来做移位----
+// -----------移位密码也就是密码中的字母会按照指定的数量来做移位----
 
 function rot13(str) {
     var a_charcode = 'A'.charCodeAt(0);
@@ -310,31 +307,25 @@ function replace_code(a, b) {
     return String.fromCharCode(n + b);
 }
 
-rot13("SERR PBQR PNZC");
+rot13('SERR PBQR PNZC');
 
-
-//---------返回这两个数字和它们之间所有数字的和---------
+// ---------返回这两个数字和它们之间所有数字的和---------
 function sumAll(arr) {
-    arr.sort(function(a, b) { return a - b });
+    arr.sort(function(a, b) { return a - b; });
     var n = arr[1] - arr[0];
     var total = arr[0];
     var count = 1;
     for (var i = 0; i < n; i++) {
         total += arr[0] + count;
         count++;
-
     }
     return total;
-
-
 }
 
 sumAll([5, 10]);
 
-
-//-----------最大公约数-----------
+// -----------最大公约数-----------
 function big() {
-
     var u = 42;
     var v = 23;
     var temp = v;
@@ -343,21 +334,18 @@ function big() {
         u = v;
         v = temp;
     }
-    alert("最大公约数是" + u);
+    // alert("最大公约数是" + u)
 }
-big()
+big();
 
-//-------------数字反转---------------
+// -------------数字反转---------------
 function reversenum() {
-
-
     var num = 23871;
     var reverse = 0;
     do {
         var lastdigit = num % 10;
         reverse = (reverse * 10) + lastdigit;
         num = num / 10;
-
     } while (num > 0);
 
     return reverse;
@@ -365,7 +353,7 @@ function reversenum() {
 
 reversenum();
 
-//--------------找两个数组中独有的对象----------
+// --------------找两个数组中独有的对象----------
 function diff(arr1, arr2) {
     var tmp = [];
     tmp = tmp.concat(compar(arr1, arr2));
@@ -386,7 +374,6 @@ function compar(arr1, arr2) {
             }
         }
         if (cont == len) {
-
             newarr.push(item);
         }
     });
@@ -397,7 +384,7 @@ function compar(arr1, arr2) {
 
 diff([1, 2, 3, 5], [1, 2, 3, 4, 5]);
 
-//---------------------遍历对象，查找目标对象--------------
+// ---------------------遍历对象，查找目标对象--------------
 function where(collection, source) {
     var arr1 = [];
     var arr2 = [];
@@ -410,7 +397,6 @@ function where(collection, source) {
     } else {
         return arr1;
     }
-
 }
 
 function abc(collection, source, j) {
@@ -433,12 +419,12 @@ function abc(collection, source, j) {
     return arrtmp;
 }
 
-where([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 });
+where([{ 'a': 1, 'b': 2 }, { 'a': 1 }, { 'a': 1, 'b': 2, 'c': 2 }], { 'a': 1, 'b': 2 });
 
-//--------------------替换句子中的给定字符串---------------
+// --------------------替换句子中的给定字符串---------------
 function myReplace(str, before, after) {
-    var strtmp = "";
-    if (before.charCodeAt(0) < "a".charCodeAt(0)) {
+    var strtmp = '';
+    if (before.charCodeAt(0) < 'a'.charCodeAt(0)) {
         strtmp = after.charAt(0).toUpperCase();
         var tmp = after.substr(1);
         strtmp += tmp;
@@ -449,17 +435,17 @@ function myReplace(str, before, after) {
 
     return tmp2;
 }
-myReplace("He is Sleeping on the couch", "Sleeping", "sitting")
-myReplace("Let us go to the store", "store", "mall")
+myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting');
+myReplace('Let us go to the store', 'store', 'mall');
 
-//---------------一个英文单词的第一个辅音或辅音丛移到词尾-------------------
+// ---------------一个英文单词的第一个辅音或辅音丛移到词尾-------------------
 function translate(str) {
-    var str1 = "";
+    var str1 = '';
     var arr1 = [];
     var n = 0;
-    var tmp = "";
+    var tmp = '';
     if (yuanyin(str[0])) {
-        str = str + "way";
+        str = str + 'way';
         return str;
     } else {
         for (var i = 0; i < str.length; i++) {
@@ -471,43 +457,37 @@ function translate(str) {
             }
         }
         n = arr1.length;
-        tmp = arr1.join("");
+        tmp = arr1.join('');
         str = str.substr(n);
         str += tmp;
-        str += "ay";
+        str += 'ay';
         return str;
     }
-
-
 
     return str;
 }
 
 function yuanyin(a) {
-    var arr = ["a", "e", "i", "o", "u"];
+    var arr = ['a', 'e', 'i', 'o', 'u'];
     for (var i = 0; i < 5; i++) {
         if (a == arr[i]) {
             return true;
         } else {
             continue;
         }
-
     }
     return false;
 }
 
+translate('consonant');
 
-translate("consonant");
-
-//------------------字符转换，生物中碱基对转换--------------
+// ------------------字符转换，生物中碱基对转换--------------
 function pair(str) {
     var arr1 = [];
     var tmp = [];
-    var str2 = "";
+    var str2 = '';
 
-
-
-    arr1 = str.split("");
+    arr1 = str.split('');
     for (var i = 0; i < arr1.length; i++) {
         var arr2 = [];
         str2 = arr1[i];
@@ -516,24 +496,22 @@ function pair(str) {
         tmp.push(arr2);
     }
 
-
     return tmp;
 }
 
 function pat(a) {
     var pair = {
-        A: "T",
-        T: "A",
-        C: "G",
-        G: "C"
+        A: 'T',
+        T: 'A',
+        C: 'G',
+        G: 'C'
     };
-    var str = "";
+    var str = '';
     str = pair[a];
     return str;
 }
 
-pair("GCG");
-
+pair('GCG');
 
 // -----------字母序列中找到缺失的字母并返回它-------------
 function fearNotLetter(str) {
@@ -559,10 +537,115 @@ function fearNotLetter(str) {
 
 fearNotLetter('acde');
 
-//----------检查一个值是否是基本布尔类型-----------
+// ----------检查一个值是否是基本布尔类型-----------
 function boo(bool) {
-    return typeof bool === "boolean";
-
+    return typeof bool === 'boolean';
 }
 
 boo(null);
+
+// 传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。
+function unite(arr1, arr2, arr3) {
+    var arr = [];
+    arr = arguments[0];
+
+    for (var i = 0; i < arguments.length; i++) {
+        arguments[i].forEach(function(ele) {
+            if (!isinside(arr, ele)) {
+                arr.push(ele);
+            }
+        }, this);
+    }
+    return arr;
+}
+
+function isinside(arr, a) {
+    var flag = false;
+    arr.forEach(function(item, index, arr) {
+        if (item == a) {
+            flag = true;
+        }
+    });
+    return flag;
+}
+
+unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+// 传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。--2
+function unite(arr1, arr2, arr3) {
+    var args = Array.from(arguments);
+    var arr = args.reduce(function(prev, cur, index, array) {
+        return prev.concat(cur);
+    });
+    return arr.filter(function(item, index, array) {
+        return array.indexOf(item) === index;
+    });
+}
+unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+// ---------------将给定的数字转换成罗马数字-------------
+function convert(num) {
+    var alpha = ['I', 'V', 'X', 'L', 'C', 'D', 'M'],
+        roman = '',
+        bit = 0;
+    while (num > 0) {
+        var tempnum = num % 10;
+        switch (tempnum) {
+            case 3:
+                {
+                    roman = alpha[bit] + roman;
+                    tempnum--;
+                }
+            case 2:
+                {
+                    roman = alpha[bit] + roman;
+                    tempnum--;
+                }
+            case 1:
+                {
+                    roman = alpha[bit] + roman;
+                    break;
+                }
+            case 4:
+                {
+                    roman = alpha[bit + 1] + roman;
+                    roman = alpha[bit] + roman;
+                    break;
+                }
+            case 8:
+                {
+                    roman = alpha[bit] + roman;
+                    tempnum--;
+                }
+            case 7:
+                {
+                    roman = alpha[bit] + roman;
+                    tempnum--;
+                }
+            case 6:
+                {
+                    roman = alpha[bit] + roman;
+                    tempnum--;
+                }
+            case 5:
+                {
+                    roman = alpha[bit + 1] + roman;
+                    break;
+                }
+            case 9:
+                {
+                    roman = alpha[bit + 2] + roman;
+                    roman = alpha[bit] + roman;
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+        bit += 2;
+        num = Math.floor(num / 10);
+    }
+    return roman;
+}
+
+convert(36);
