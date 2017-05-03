@@ -559,10 +559,10 @@ function fearNotLetter(str) {
 
 fearNotLetter('acde');
 
-//
+//----------检查一个值是否是基本布尔类型-----------
 function boo(bool) {
-    Boolean(bool);
-    return bool;
+    return typeof bool === "boolean";
+
 }
 
 boo(null);
