@@ -570,7 +570,13 @@ function isinside(arr, a) {
 
 unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 
+/**
+ * Sorted Union
+ * good
+ * 
+ */
 // 传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。--2
+
 function unite(arr1, arr2, arr3) {
     var args = Array.from(arguments);
     var arr = args.reduce(function (prev, cur, index, array) {
@@ -581,8 +587,10 @@ function unite(arr1, arr2, arr3) {
     });
 }
 unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+
 // ---------------将给定的数字转换成罗马数字-------------
-function convert(num) {
+function convert2(num) {
     var alpha = ['I', 'V', 'X', 'L', 'C', 'D', 'M'],
         roman = '',
         bit = 0;
@@ -647,4 +655,75 @@ function convert(num) {
     return roman;
 }
 
-convert(36);
+convert2(36);
+/**
+ * 将字符串中的字符 &、<、>、" 转换为它们对应的 HTML 实体。
+ * 
+ */
+
+function convert3(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/\'/g, "&apos;");
+
+}
+convert3("Dolce & Gabbana");
+
+/**
+ * --2
+ * 将字符串中的字符 &、<、>、" 转换为它们对应的 HTML 实体。--2
+ * good
+ */
+
+function convert4(str) {
+    var obj = {
+        "&": '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&apos;'
+    };
+    var arr = str.split('');
+    var result = arr.map(function (val) {
+        if (obj.hasOwnProperty(val)) {
+            return obj[val];
+        } else {
+            return val;
+        }
+    });
+    return result.join("");
+}
+
+convert4("Dolce & Gabbana");
+
+/**
+ * Spinal Tap Case
+ * 将字符串转换为 spinal case
+ */
+function spinalCase(str) {
+    var len = str.length;
+    var char_a = 'a'.charCodeAt();
+    var char_z = 'z'.charCodeAt();
+    var char_A = 'A'.charCodeAt();
+    var char_Z = 'Z'.charCodeAt();
+    var str1 = "";
+    var str2 = "";
+    var arr = [];
+    for (var i = 0; i < len; i++) {
+        if (str.charCodeAt(i) >= char_a && str.charCodeAt(i) <= char_z) {
+            str1 += str[i];
+        } else if (str.charCodeAt(i) >= char_A && str.charCodeAt(i) <= char_Z) {
+            str1 += '&';
+            str1 += str[i].toLowerCase();
+        } else {
+            str1 += '&';
+        }
+    }
+    arr = str1.split("&");
+    var tmp = arr.filter(function (val, index, arr) {
+        return val.length > 0;
+    });
+    tmp = tmp.join("-");
+    return tmp;
+
+}
+// spinalCase("thisIsSpinalTap");
+spinalCase('This Is Spinal Tap');
