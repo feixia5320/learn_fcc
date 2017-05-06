@@ -749,8 +749,8 @@ function sumFibs(num) {
         }
     }
     //在数组中筛选出奇数
-    var arr = arr.filter(function(val,index,arr){
-        return val % 2 ==1;
+    var arr = arr.filter(function (val, index, arr) {
+        return val % 2 == 1;
     });
 
     //数组求和
@@ -761,4 +761,101 @@ function sumFibs(num) {
 }
 
 sumFibs(4);
+/**
+ * Sum All Primes
+ * 求小于等于给定数值的质数之和。
+ */
+function sumPrimes(num) {
+    //求质数
+    var arr = [];
+    var total = 0;
+    //求小于num的所有质数
+    for (var i = 2; i <= num; i++) {
+        if (isPrime(i)) {
+            arr.push(i);
+        }
+    }
+    //数组求和
+    total = arr.reduce(function (pre, val, index, arr) {
+        return pre += val;
+    })
+    return total;
+}
+//求质数
+function isPrime(num) {
+    var flag = true;
+    for (var i = 2; i <= num - 1; i++) {
+        if (num % i == 0) {
+            flag = false;
+            break;
+        }
 
+    }
+    return flag;
+}
+
+sumPrimes(10);
+/**
+ * Smallest Common Multiple
+ * 找出能被两个给定参数和它们之间的连续数字整除的最小公倍数。
+ */
+
+function smallestCommons(arr) {
+    var mina = arr[0] < arr[1] ? arr[0] : arr[1];
+    var maxb = arr[0] > arr[1] ? arr[0] : arr[1];
+    var arr1 = [];
+    for (var i = mina; i <= maxb; i++) {
+        arr1.push(i);
+    }
+    var cont = 0;
+    for (var j = maxb; ; j++) {
+         cont = 0;
+        for (var k = 0; k < arr1.length; k++) {
+           
+            if (j % arr1[k] != 0) {
+                break;
+            }else{
+                cont++;
+            }
+        }
+        if (cont < arr1.length) {
+            continue;
+        } else {
+            return j;
+        }
+    }
+
+}
+
+
+smallestCommons([2, 3]);
+/**
+ * Smallest Common Multiple--2
+ * 找出能被两个给定参数和它们之间的连续数字整除的最小公倍数。
+ */
+
+function smallestCommons2(arr) {
+    //从小到大，获得最大最小值
+    arr = arr.sort(function (a, b) { return a - b; });
+    var min = arr[0];
+    var max = arr[1];
+    //所有连续数字值从大到小
+    var arrtemp = [];
+    for (var i = max; i >= min; i--) {
+        arrtemp.push(i);
+
+    }
+    //获得最大公约数，辗转相除法：用小数除大数，如果余数不是零，就把余数和较小的数构成一组新数，继续上面的除法，知道大数被小数约尽，此时比较小的数就是最大公约数 80=36*2+8,36=8*4+4,8=4*2+0 
+    function getCommons(a, b) {
+        if (a % b === 0) return b;
+        return getCommons(b, a % b);
+
+    }
+    //两个数之间的最小公倍数为两个数之积除以最大公约数。
+    return arrtemp.reduce(function (m, n) {
+
+    });
+
+}
+
+smallestCommons2([8, 2]);
