@@ -578,10 +578,13 @@ unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 // 传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。--2
 
 function unite(arr1, arr2, arr3) {
+    //将参数中的数组拼接起来
     var args = Array.from(arguments);
+    //将参数中的数组拼接起来
     var arr = args.reduce(function (prev, cur, index, array) {
         return prev.concat(cur);
     });
+    //去掉数组中的重复项
     return arr.filter(function (item, index, array) {
         return array.indexOf(item) === index;
     });
@@ -683,6 +686,7 @@ function convert4(str) {
     };
     var arr = str.split('');
     var result = arr.map(function (val) {
+        //判断对象中是否有某值
         if (obj.hasOwnProperty(val)) {
             return obj[val];
         } else {
@@ -727,3 +731,34 @@ function spinalCase(str) {
 }
 // spinalCase("thisIsSpinalTap");
 spinalCase('This Is Spinal Tap');
+/**
+ * Sum All Odd Fibonacci Numbers
+ * 返回小于或等于num的斐波纳契奇数之和。
+ */
+function sumFibs(num) {
+    var arr = [1, 1];
+    var sum = 0;
+    //计算斐波纳契数字
+    for (var i = 0; i < num; i++) {
+        sum = arr[i] + arr[i + 1];
+
+        if (sum <= num) {
+            arr.push(sum);
+        } else {
+            break;
+        }
+    }
+    //在数组中筛选出奇数
+    var arr = arr.filter(function(val,index,arr){
+        return val % 2 ==1;
+    });
+
+    //数组求和
+    var tmp = arr.reduce(function (pre, curval, index, arr) {
+        return pre += curval;
+    });
+    return tmp;
+}
+
+sumFibs(4);
+
