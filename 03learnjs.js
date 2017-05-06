@@ -311,7 +311,7 @@ rot13('SERR PBQR PNZC');
 
 // ---------返回这两个数字和它们之间所有数字的和---------
 function sumAll(arr) {
-    arr.sort(function(a, b) { return a - b; });
+    arr.sort(function (a, b) { return a - b; });
     var n = arr[1] - arr[0];
     var total = arr[0];
     var count = 1;
@@ -363,7 +363,7 @@ function diff(arr1, arr2) {
 
 function compar(arr1, arr2) {
     var newarr = [];
-    arr1.forEach(function(item, index, arr) {
+    arr1.forEach(function (item, index, arr) {
         var cont = 0;
         var len = arr2.length;
         for (var i = 0; i < len; i++) {
@@ -464,7 +464,6 @@ function translate(str) {
         return str;
     }
 
-    return str;
 }
 
 function yuanyin(a) {
@@ -550,7 +549,7 @@ function unite(arr1, arr2, arr3) {
     arr = arguments[0];
 
     for (var i = 0; i < arguments.length; i++) {
-        arguments[i].forEach(function(ele) {
+        arguments[i].forEach(function (ele) {
             if (!isinside(arr, ele)) {
                 arr.push(ele);
             }
@@ -561,7 +560,7 @@ function unite(arr1, arr2, arr3) {
 
 function isinside(arr, a) {
     var flag = false;
-    arr.forEach(function(item, index, arr) {
+    arr.forEach(function (item, index, arr) {
         if (item == a) {
             flag = true;
         }
@@ -574,10 +573,10 @@ unite([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 // 传入两个或两个以上的数组，返回一个以给定的原始数组排序的不包含重复值的新数组。--2
 function unite(arr1, arr2, arr3) {
     var args = Array.from(arguments);
-    var arr = args.reduce(function(prev, cur, index, array) {
+    var arr = args.reduce(function (prev, cur, index, array) {
         return prev.concat(cur);
     });
-    return arr.filter(function(item, index, array) {
+    return arr.filter(function (item, index, array) {
         return array.indexOf(item) === index;
     });
 }
