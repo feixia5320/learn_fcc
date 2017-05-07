@@ -809,12 +809,12 @@ function smallestCommons(arr) {
     }
     var cont = 0;
     for (var j = maxb; ; j++) {
-         cont = 0;
+        cont = 0;
         for (var k = 0; k < arr1.length; k++) {
-           
+
             if (j % arr1[k] != 0) {
                 break;
-            }else{
+            } else {
                 cont++;
             }
         }
@@ -865,60 +865,99 @@ smallestCommons2([8, 2]);
  * 浏览数组（第一个参数）并返回数组中第一个通过某种方法（第二个参数）验证的元素。
  */
 function find(arr, func) {
-  var tmp = arr.filter(func);
-  return tmp[0];
+    var tmp = arr.filter(func);
+    return tmp[0];
 }
 
-find([1, 2, 3, 4], function(num){ return num % 2 === 0; });
+find([1, 2, 3, 4], function (num) { return num % 2 === 0; });
 /**
  * Drop it
  * 如果返回fasle，继续抛出，直到返回true。
  */
 function drop(arr, func) {
-  // Drop them elements.
-  for(var i=0;i<arr.length;i++){
-    if(func(arr[i])===false)
-      arr.splice(i,1,'false');
-    else break;
-  }  
-  return arr.filter(function(vl){
-    return vl!=="false";
-  });  
+    // Drop them elements.
+    for (var i = 0; i < arr.length; i++) {
+        if (func(arr[i]) === false)
+            arr.splice(i, 1, 'false');
+        else break;
+    }
+    return arr.filter(function (vl) {
+        return vl !== "false";
+    });
 }
 
 
-drop([0, 1, 0, 1], function(n) {return n === 1;}) ;
+drop([0, 1, 0, 1], function (n) { return n === 1; });
 
 /**
  * Drop it --2
  */
 function drop2(arr, func) {
-  for(var i=0;i<arr.length;){
-    if(func(arr[0])===false)
-      arr.shift();
-    else break;
-  }  
-  return arr;
+    for (var i = 0; i < arr.length;) {
+        if (func(arr[0]) === false)
+            arr.shift();
+        else break;
+    }
+    return arr;
 }
 
-drop2([1, 2, 3, 4], function(n) {return n > 5;}) ;
+drop2([1, 2, 3, 4], function (n) { return n > 5; });
 
 /**
  * Steamroller
  * 对嵌套的数组进行扁平化处理
  */
 function steamroller(arr) {
-  var ayy=[];
-  function test(ay){
-    for(var i=0;i<ay.length;i++){
-      if(Array.isArray(ay[i])===true) test(ay[i]);
-      else ayy.push(ay[i]);
+    var ayy = [];
+    function test(ay) {
+        for (var i = 0; i < ay.length; i++) {
+            if (Array.isArray(ay[i]) === true) test(ay[i]);
+            else ayy.push(ay[i]);
+        }
+        return ayy;
     }
-    return ayy;
-  }
 
-  return test(arr);
+    return test(arr);
 }
 
 steamroller([1, [2], [3, [[4]]]]);
+/**
+ * Binary Agents
+ * 二进制字符串，翻译成英语句子
+ */
+function binaryAgent(str) {
+    var arr = [];
+    var arr1 = [];
+    arr = str.split(" ");
+    var str1 = '';
+    for (var i = 0; i < arr.length; i++) {
+        //二进制转换为十进制
+        arr1[i] = parseInt(arr[i], 2);
+        str1 += String.fromCharCode(arr1[i]);
+    }
+    // console.log(str1);
+    return str1;
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+/**
+ * 十进制转换为2进制
+ */
+function toBin(intNum) {
+    var answer = "";
+    if (/\d+/.test(intNum)) {
+        while (intNum != 0) {
+            answer = Math.abs(intNum % 2) + answer;
+            intNum = parseInt(intNum / 2);
+        }
+        if (answer.length == 0)
+            answer = "0";
+        // console.log(answer);
+        return answer;
+    } else {
+        return 0;
+    }
+}
+toBin(5);
 
