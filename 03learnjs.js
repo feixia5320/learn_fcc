@@ -859,3 +859,66 @@ function smallestCommons2(arr) {
 }
 
 smallestCommons2([8, 2]);
+
+/**
+ * Finders Keepers
+ * 浏览数组（第一个参数）并返回数组中第一个通过某种方法（第二个参数）验证的元素。
+ */
+function find(arr, func) {
+  var tmp = arr.filter(func);
+  return tmp[0];
+}
+
+find([1, 2, 3, 4], function(num){ return num % 2 === 0; });
+/**
+ * Drop it
+ * 如果返回fasle，继续抛出，直到返回true。
+ */
+function drop(arr, func) {
+  // Drop them elements.
+  for(var i=0;i<arr.length;i++){
+    if(func(arr[i])===false)
+      arr.splice(i,1,'false');
+    else break;
+  }  
+  return arr.filter(function(vl){
+    return vl!=="false";
+  });  
+}
+
+
+drop([0, 1, 0, 1], function(n) {return n === 1;}) ;
+
+/**
+ * Drop it --2
+ */
+function drop2(arr, func) {
+  for(var i=0;i<arr.length;){
+    if(func(arr[0])===false)
+      arr.shift();
+    else break;
+  }  
+  return arr;
+}
+
+drop2([1, 2, 3, 4], function(n) {return n > 5;}) ;
+
+/**
+ * Steamroller
+ * 对嵌套的数组进行扁平化处理
+ */
+function steamroller(arr) {
+  var ayy=[];
+  function test(ay){
+    for(var i=0;i<ay.length;i++){
+      if(Array.isArray(ay[i])===true) test(ay[i]);
+      else ayy.push(ay[i]);
+    }
+    return ayy;
+  }
+
+  return test(arr);
+}
+
+steamroller([1, [2], [3, [[4]]]]);
+
