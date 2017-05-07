@@ -961,3 +961,103 @@ function toBin(intNum) {
 }
 toBin(5);
 
+/**
+ * Everything Be True
+ * every函数,所有对象都存在对应的属性(pre)，并且属性(pre)对应的值为真。函数返回ture。
+ */
+
+function every(collection, pre) {
+    var arr = [];
+    var flg = true;
+    var len = collection.length;
+    for (var i = 0; i < len; i++) {
+        var keys = [];
+        //获取对象中的所有key值
+        keys = Object.keys(collection[i]);
+        for (var j = 0; j < keys.length; j++) {
+            var key = keys[j];
+            //获取对象key值对应的属性
+            var tmp = collection[i][key];
+            if (!collection[i].hasOwnProperty(pre)) {
+                flg = false;
+                return flg;
+            }
+            if (!Boolean(tmp)) {
+                flg = false;
+                return flg;
+            }
+        }
+    }
+    return flg;
+}
+every([{ "user": "Tinky-Winky", "sex": "male" }, { "user": "Dipsy" }, { "user": "Laa-Laa", "sex": "female" }, { "user": "Po", "sex": "female" }], "sex");
+
+/**
+ * Everything Be True --2
+ * 
+ */
+function every2(collection, pre) {
+    // Is everyone being true?
+    return collection.every(function (item, index, array) {
+        return item[pre];
+    });
+}
+every2([{ "user": "Tinky-Winky", "sex": "male", "age": 0 }, { "user": "Dipsy", "sex": "male", "age": 3 }, { "user": "Laa-Laa", "sex": "female", "age": 5 }, { "user": "Po", "sex": "female", "age": 4 }], "age");
+/**
+ * Arguments Optional
+ * 计算两个参数之和的 function。如果只有一个参数，则返回一个 function，该 function 请求一个参数然后返回求和的结果
+ */
+
+function add() {
+    //对象类型判断
+    if (typeof arguments[0] !== "number" || (arguments.length > 1 && typeof arguments[1] !== "number")) {
+        return undefined;
+    }
+    if (arguments.length == 1) {
+        var arg0 = arguments[0];
+        //返回函数，第二个函数的输入参数为（参数）
+        return function (num) {
+            if (typeof num !== "number") {
+                return undefined;
+            }
+            return arg0 + num;
+        };
+    } else {
+        return arguments[0] + arguments[1];
+    }
+}
+add(2, 3);
+add(2)(3);
+add(2)([3]);
+/**
+ * Validate US Telephone Numbers
+ * 有效的美国电话号码
+ */
+function telephoneCheck(str) {
+    // Good luck!
+    var reg = /^(1\s?)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}/;   //正则规则
+
+    var index1 = str.indexOf("(");
+    var index2 = str.indexOf(")");   //查询到两个括号
+
+    if ((index1 != -1 && index2 != -1) || (index1 == -1 && index2 == -1)) {   //存在双括号或者没有括号
+        if (index2 != index1 && index2 - index1 != 4) {  //如果存在双括号，且序号间的字符有3个
+            return false;
+        }
+        var str2 = str.replace(/[\(\)\s-]/g, "");  //将括号和空格和“-”全局替换成空，便于统计数字长度
+        if (str2.length == 11 && str2.substr(0, 1) != 1) {
+            return false;
+        }
+
+    } else {
+        return false;
+    }
+
+    return reg.test(str);
+}
+
+telephoneCheck("27576227382");
+
+/**
+ * 
+ */
