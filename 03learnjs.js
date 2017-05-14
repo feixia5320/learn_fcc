@@ -1059,5 +1059,129 @@ function telephoneCheck(str) {
 telephoneCheck("27576227382");
 
 /**
- * 
+ * Symmetric Difference
+ * 数组的对等差分
  */
+function sym(args) {
+    for (var k = 0; k < arguments.length; k++) {
+        arguments[k] = filter_same(arguments[k]);
+    }
+
+    var arr_1 = [];
+    arr_1 = sys_arr(arguments[0], arguments[1]);
+    for (var j = 0; j < arguments.length; j++) {
+        if (j + 2 < arguments.length) {
+            arr_1 = sys_arr(arr_1, arguments[j + 2]);
+        }
+    }
+    return arr_1;
+}
+
+function sys_arr(args) {
+    var arrs = Array.from(arguments);
+    var arr = arrs.reduce(function (prev, cur, index, array) {
+        return prev.concat(cur);
+    });
+    var count = 0;
+    arr.sort(function (a, b) {
+        return a - b;
+    });
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == arr[i + 1]) {
+            count = 2;
+            arr.splice(i, count);
+            i--;
+        } else if (arr[i] == arr[i + 2]) {
+            count = 3;
+            arr.splice(i, count);
+            i--;
+        } else if (arr[i] == arr[i + 3]) {
+            count = 4;
+            arr.splice(i, count);
+            i--;
+        }
+    };
+
+    return arr;
+}
+function filter_same(arr) {
+    return arr.filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+    });
+}
+
+sym([1, 2, 3], [5, 2, 1, 4]);
+
+/**
+ * Exact Change
+ * 收银程序 找零钱
+ */
+
+function checkCashRegister(price, cash, cid) {
+    var change;
+    change = cash - price;
+    var res = [];
+
+    var PENNY_n = cid[0][1] / 0.01;
+    var NICKEL_n = cid[1][1] / 0.05;
+    var DIME_n = cid[2][1] / 0.1;
+    var QUARTER_n = cid[3][1] / 0.25;
+    var ONE_n = cid[4][1] / 1;
+    var FIVE_n = cid[5][1] / 5;
+    var TEN_n = cid[6][1] / 10;
+    var TWENTY_n = cid[7][1] / 20;
+    var HUNDRED_n = cid[8][1] / 100;
+    var flg = "";
+    for (var PENNY = 0; PENNY < PENNY_n; PENNY++) {
+        for (var NICKEL = 0; NICKEL < NICKEL_n; NICKEL++) {
+            for (var DIME = 0; DIME < DIME_n; DIME++) {
+                for (var QUARTER = 0; QUARTER < QUARTER_n; QUARTER++) {
+                    for (var ONE = 0; ONE < ONE_n; ONE++) {
+                        for (var FIVE = 0; FIVE < FIVE_n; FIVE++) {
+                            for (var TEN = 0; TEN < TEN_n; TEN++) {
+                                for (var TWENTY = 0; TWENTY < TWENTY_n; TWENTY++) {
+                                    for (var HUNDRED = 0; HUNDRED < HUNDRED_n; HUNDRED++) {
+                                        var totle = 0;
+                                        totle = HUNDRED * 100 + TWENTY * 20 + TEN * 10 + FIVE * 5 + ONE + QUARTER * 0.25 + DIME * 0.1 + NICKEL * 0.05 + PENNY * 0.01;
+                                        if (totle == change) {
+                                            res.push(["ONE HUNDRED", HUNDRED * 100]);
+                                            res.push(["TWENTY", TWENTY * 20]);
+                                            res.push(["TEN", TEN * 10]);
+                                            res.push(["FIVE", FIVE * 5]);
+                                            res.push(["ONE", ONE]);
+                                            res.push(["QUARTER", QUARTER * 0.25]);
+                                            res.push(["DIME", DIME * 0.1]);
+                                            res.push(["NICKEL", NICKEL * 0.05]);
+                                            res.push(["PENNY", PENNY * 0.01]);
+                                            flg = 'suc';
+                                            break;
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (flg != 'suc') {
+        return 'Insufficient Funds';
+    } else {
+        return res;
+    }
+}
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01], 0.01
+// ["NICKEL", 2.05], 0.05
+// ["DIME", 3.10], 0.1
+// ["QUARTER", 4.25], 0.25
+// ["ONE", 90.00], 1
+// ["FIVE", 55.00], 5
+// ["TEN", 20.00], 10
+// ["TWENTY", 60.00],  20
+// ["ONE HUNDRED", 100.00]] 100
+
+checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
