@@ -1184,4 +1184,103 @@ function checkCashRegister(price, cash, cid) {
 // ["TWENTY", 60.00],  20
 // ["ONE HUNDRED", 100.00]] 100
 
-checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+//checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+
+
+/**
+ * Inventory Update
+ * 将新数组的值，更新到老的数组库中，
+ * 
+ */
+function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+    console.log("ddd");
+    arr2.forEach(function (vl, ix) {
+        var index = isExit(vl[1], arr1);
+        if (index !== undefined) {
+            arr1[index][0] = arr1[index][0] + vl[0];
+        } else {
+            arr1.push(vl);
+        }
+    });
+    //检查str是否在arr中存在,如果存在，返回下标
+    function isExit(str, arr) {
+        for (var i = 0; i < arr.length; i++)
+            if (arr[i][1] == str) return i;
+    }
+    return arr1.sort(function (a, b) {
+        return (a[1][0] > b[1][0]) ? 1 : 0;
+    });
+}
+
+// Example inventory lists
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
+
+updateInventory(curInv, newInv);
+
+/**
+ * No repeats please
+ * 字符重新排列生成新的字符串
+ */
+
+function permAlone(str) {
+    var arr = str.split("");
+    var perarr = [];
+    var begin = 0;
+    //创建正则，如果字符串全重复，则直接return 0
+    var reg = /(.)\1+/g;
+    if (str.match(reg) !== null && str.match(reg)[0] === str) {
+        return 0;
+    }
+    //用于交换的函数
+    function swap(idx1, idx2) {
+        var temp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = temp;
+    }
+    //如果begin到了最后一个字符，可以将这个字符串加入到全排列数组中了
+    function permall(arr, begin) {
+        if (begin == arr.length - 1) {
+            perarr[perarr.length] = arr.join("");
+            return;
+        }
+        for (var i = 0; (i + begin) < arr.length; i++) {
+            swap(begin, begin + i);
+            permall(arr, begin + 1);
+            swap(begin, begin + i);
+        }
+    }
+    permall(arr, begin);
+    //返回相邻不重复的数量
+    return perarr.filter(function (val) {
+        return !val.match(reg);
+    }).length;
+}
+
+permAlone('aab');
+
+/**
+ * 
+ */
+var Person = function(firstAndLast) {
+    var firstName = '';
+    var lastName = '';
+    var fullName = '';
+    
+    return firstAndLast;
+};
+
+var bob = new Person('Bob Ross');
+bob.getFullName();
