@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>下拉菜单</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<button id="btn">aaa</button>
+
+	<button id="btn2">bbbb</button>
+	<ul id="ul">
+		<li class="li">ul1</li>
+		<li>ul2</li>
+		<li>ul3</li>
+	</ul>
+	<p>test</p>
+	<input type="text" onkeydown="keydown(event,this)">
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		/***
+		 * 
+		 * 
+		 */
+		function click() {
+			let a = document.getElementById("btn2");
+			a.addEventListener("click", function () {
+				console.log("myclick")
+			})
+
+			function keydown(event, that) {
+				let code = event.code;
+				let key = event.key;
+				let keyCode = event.keyCode;
+				if (key == "Enter") {
+					console.log("按下的键是：", key)
+				}
+			}
+		}
+
+
+		/**
+		 * 自定义事件
+		 */
+		function difineEvent() {
+			// 直接自定义事件，使用 Event 构造函数
+			let myevent = new Event('build');
+			let elem = document.querySelector('#btn')
+			// 监听事件
+			elem.addEventListener('build', function (e) {
+				console.log("event:build")
+			}, false);
+			// 触发事件
+			elem.dispatchEvent(myevent);
+
+			$("#btn").on('click', function (event) {
+				// alert(22);
+				console.log('btn');
+				elem.dispatchEvent(myevent);
+			})
+		}
+		// difineEvent();
+
+		// 方法二
+		function difineEvent2() {
+			// add an appropriate event listener
+			let obj = document.querySelector('#btn');
+			obj.addEventListener("cat", function (e) {
+				console.log("event  name cat");
+			});
+
+			// create and dispatch the event
+			let event = new CustomEvent("cat", { "detail": { "hazcheeseburger": true } });
+			obj.dispatchEvent(event);
+		}
+		// difineEvent2()
+
+		// 方法三
+		// jQuery 绑定自定义事件
+		// 使用自定义事件需要注意兼容性问题，而使用 jQuery 就简单多了：
+		function difineEventJq() {
+			$("p").on('myCustomEvent', function () {
+				console.log("jquery event")
+			 });
+
+			// 触发事件
+			$("p").trigger('myCustomEvent');
+			// 此外，你还可以在触发自定义事件时传递更多参数信息：
+
+			$("p").on("myCustomEvent", function (event, myName) {
+				$(this).text(myName + ", hi there!");
+			});
+			$("#btn").click(function () {
+				$("p").trigger("myCustomEvent", ["John"]);
+			});
+		}
+		// difineEventJq()
+
+		function difineEvent3() {
+			let dom = document.querySelector('#btn')
+			dom.addEventListener('alert', function (event) {
+				console.log("alert event")
+			}, false);
+
+			// 创建
+			let evt = document.createEvent("HTMLEvents");
+			// 初始化
+			evt.initEvent("alert", false, false);
+
+			// 触发, 即弹出文字
+			dom.dispatchEvent(evt);
+		}
+		// difineEvent3()
+
+	</script>
+
+</body>
+
+</html>
