@@ -22,6 +22,8 @@
 
 	<div id="test" style="width:1px;height:17px;background:#0f0;">0%</div>
 	<input type="button" value="Run" id="run" />
+	<h3>canvas</h3>
+	<canvas id="tutorial" width="300" height="300"></canvas>
 
 
 	<script src="js/jquery.min.js"></script>
@@ -152,7 +154,30 @@
 				}
 			}
 		}
-		jsAnimate()
+		// jsAnimate()
+
+		function canvas() {
+			let canvas = document.getElementById('tutorial');
+			if (!canvas.getContext) return;
+			let ctx = canvas.getContext("2d");
+			ctx.beginPath();
+			ctx.moveTo(50, 50);
+			//参数1、2：控制点1坐标   参数3、4：控制点2坐标  参数4：圆弧半径
+			ctx.arcTo(200, 50, 200, 200, 100);
+			ctx.lineTo(200, 200)
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.rect(50, 50, 10, 10);
+			ctx.rect(200, 50, 10, 10)
+			ctx.rect(200, 200, 10, 10)
+			ctx.fill()
+
+			ctx.setLineDash([20, 5]);
+			ctx.strokeRect(50, 50, 210, 210);
+			
+		}
+		canvas()
 
 
 
