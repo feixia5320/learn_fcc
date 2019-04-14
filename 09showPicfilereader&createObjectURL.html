@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>预览图片filereader&createObjectURL</title>
+    <script type="text/javascript" src="./lib/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <div class="preview_wrap"></div>
+    <input type="file" id="file2">
+    <div class="preview_wrap2"></div>
+
+
+    <script>
+        window.onload = function () {
+            function filereader() {
+                //preview img ： filereader方式
+                document.getElementById('file').onchange = function (e) {
+                    var ele = document.getElementById('file').files[0];
+
+                    var fr = new FileReader();
+                    fr.onload = function (ele) {
+
+                        var pvImg = new Image();
+                        pvImg.src = ele.target.result;
+                        pvImg.setAttribute('id', 'previewImg');
+
+                        $('.preview_wrap').html('').append(pvImg);
+                    }
+                    fr.readAsDataURL(ele);
+                }
+            }
+            filereader();
+
+            function createObjectURLFun() {
+                //preview img ： URL.createObjectURL 方式
+                document.getElementById('file2').onchange = function (e) {
+                    var ele = document.getElementById('file2').files[0];
+
+                    var createObjectURL = function (blob) {
+                        return window[window.webkitURL ? 'webkitURL' : 'URL']['createObjectURL'](blob);
+                    };
+                    var newimgdata = createObjectURL(ele);
+
+                    var pvImg = new Image();
+                    pvImg.src = newimgdata;
+                    pvImg.setAttribute('id', 'previewImg2');
+
+                    $('.preview_wrap2').html('').append(pvImg);
+                }
+            }
+            createObjectURLFun()
+
+        }
+    </script>
+
+</body>
+
+</html>
